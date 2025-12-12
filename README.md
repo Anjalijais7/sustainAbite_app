@@ -18,7 +18,7 @@ This application focuses on speed and ease of use. It allows donors to upload de
 ## 🚀 Live Demo
 
 [Link to your Vercel deployment goes here]
-*(e.g., https://sustainabite.vercel.app)*
+https://sustain-abite-app.vercel.app/
 
 ## 🛠️ Tech Stack
 
