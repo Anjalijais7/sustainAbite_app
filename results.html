@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby NGOs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #FAFAFA; padding: 20px; max-width: 500px; margin: 0 auto; }
+        .ngo-card {
+            background: white; border-radius: 15px; padding: 20px; margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #FF8C42;
+        }
+        .distance-badge { background: #FFF3E0; color: #FF8C42; padding: 4px 8px; border-radius: 10px; font-size: 0.75rem; }
+        .btn-select {
+            background: #E8F5E9; color: #2E7D32; padding: 8px 15px; border-radius: 8px;
+            text-decoration: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: inline-block; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color:#333;">📍 NGOs Near You</h2>
+    
+    <div class="ngo-card">
+        <h3>Robin Hood Army (Sector 12)</h3>
+        <p style="color:#666; font-size:0.9rem;">📍 Indirapuram, Ghaziabad</p>
+        <span class="distance-badge">0.5 km away</span><br>
+        <div class="btn-select" onclick="notify()">✅ Notify & Select</div>
+    </div>
+
+    <div class="ngo-card">
+        <h3>Feeding India (Local)</h3>
+        <p style="color:#666; font-size:0.9rem;">📍 Vasant Kunj, Delhi</p>
+        <span class="distance-badge">1.2 km away</span><br>
+        <div class="btn-select" onclick="notify()">✅ Notify & Select</div>
+    </div>
+
+    <script>
+        function notify() {
+            alert("Request Sent! The NGO has been notified.");
+            window.location.href = "dashboard.html"; 
+        }
+    </script>
+</body>
+</html>

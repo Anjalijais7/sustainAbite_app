@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --ngo-green: #4CAF50; --bg-light: #F1F8E9; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-light); margin: 0; padding-bottom: 80px; }
+        .header {
+            background: var(--ngo-green); color: white; padding: 20px;
+            border-radius: 0 0 20px 20px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .container { padding: 20px; max-width: 500px; margin: 0 auto; }
+        .donation-card {
+            background: white; border-radius: 15px; overflow: hidden; margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-header { padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .card-body { padding: 15px; }
+        .tag { background: #E8F5E9; color: var(--ngo-green); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+        .card-footer { padding: 15px; background: #FAFAFA; display: flex; gap: 10px; }
+        .accept-btn {
+            flex: 1; background: var(--ngo-green); color: white; border: none; padding: 12px;
+            border-radius: 10px; font-weight: 600; cursor: pointer;
+        }
+        .empty-state { text-align: center; color: #888; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1 style="font-size:1.2rem; margin:0;">NGO Dashboard 🚛</h1>
+            <span style="font-size:0.8rem; opacity:0.9;">Collecting as: Robin Hood Army</span>
+        </div>
+    </div>
+
+    <div class="container" id="feed-container">
+        <div class="empty-state" id="empty-msg"><p>No new donations nearby...</p></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const donationData = localStorage.getItem('sustainabite_donation');
+
+            if (donationData) {
+                const data = JSON.parse(donationData);
+                document.getElementById('empty-msg').style.display = 'none';
+
+                const cardHTML = `
+                    <div class="donation-card">
+                        <div class="card-header">
+                            <span style="font-weight:700;">👤 ${data.donorName}</span>
+                            <span style="color:#888; font-size:0.8rem;">Just now</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 style="color:#4CAF50; margin:0 0 5px 0;">${data.foodDesc}</h3>
+                            <div style="margin-bottom:15px;">
+                                <span class="tag">${data.category}</span>
+                                <span class="tag">📦 ${data.quantity}</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#555;">
+                                📍 <strong>Location:</strong> 2.5km away (Sector 18)<br>
+                                ⏰ <strong>Pickup:</strong> ${data.pickupTime}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="accept-btn" onclick="this.style.background='#333'; this.innerText='Confirmed! 🎉'">✅ Accept Pickup</button>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('feed-container').innerHTML = cardHTML;
+            }
+        };
+    </script>
+</body>
+</html>
